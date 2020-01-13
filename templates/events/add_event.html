@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %} 
+        
+        {% if star %}
+        Image :<input type="file"  name="image" ><br>
+        Name :<input type="text" name = 'name'><br>
+        {% else %}
+        Image :<input type="file"  name="image" ><br>
+        Name :<input type="text" name = 'name'><br>
+        Description :<br> <textarea  name="description"></textarea><br>
+        {% endif %}
+        <input type="submit" value="Add"><br>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Cordinators</h1>
+<h3>Faculty Co-ordinator</h3>
+{% if request.user.is_authenticated and request.user.is_superuser %}
+<a href="{% url 'add_faculty' %}"><button>Add Faculty Cordinator</button></a>
+{% endif  %}
+{% for faculty_coordinator in faculty_coordinators %}
+<div class="event">
+    <img src="{{ faculty_coordinator.image.url}}" width="400px" height="400px">
+    <h4>{{faculty_coordinator.name}}</h4>
+    {% if request.user.is_superuser %}<a href="{% url 'delete_faculty' faculty_coordinator.id %}"><button>Delete Co-ordinator</button></a> {% endif %}
+</div>
+
+{% endfor %}
+<h2>Student Co-ordinators</h2>
+{% if request.user.is_authenticated and request.user.is_superuser %}
+<a href="{% url 'add_student' %}"><button>Add Student Cordinator</button></a>
+{% endif  %}
+{% for student_coordinator in student_coordinators %}
+<div class="event">
+    <img src="{{ student_coordinator.image.url}}" width="400px" height="400px">
+    <h4>{{student_coordinator.name}}</h4>
+    {%if request.user.is_superuser %}<a href="{% url 'delete_student' student_coordinator.id %}"><button>Delete Co-ordinator</button></a> {% endif %}
+</div>
+
+{% endfor %}
+<h2>Website and App Devs </h2>
+{% if request.user.is_authenticated and request.user.is_superuser %}
+<a href="{% url 'add_dev' %}"><button>ADD DEV </button></a>
+{% endif  %}
+{% for dev in devs %}
+<div class="event">
+    <img src="{{ dev.image.url}}" width="400px" height="400px">
+    <h4>{{dev.name}}</h4>
+    <h4>{{dev.typ}}</h4>
+    {%if request.user.is_superuser %}<a href="{% url 'delete_dev' dev.id %}"><button>Delete dev</button></a> {% endif %}
+</div>
+
+{% endfor %}
+{% endblock %}

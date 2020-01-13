@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Star</h3>
+{% if request.user.is_superuser %}
+<a href="{% url 'add_star' %}"><button>Add New Star</button></a>
+{% endif %}
+<div class="star">
+    <img src="{{ star.image.url }}" width="500px" height="500px" alt="star night guest">
+    <h4>{{ star.name }}</h4>
+</div>
+<h3>Events</h3>
+
+{% for event in events %}
+
+<div class="event">
+    <img src="{{ event.image.url }}" width="400px" height="400px">
+    <a href="{{ event.get_absolute_url }}"><h4>{{event.name}}</h4></a>
+    <p>{{event.description }}</p>
+</div>
+
+{% endfor %}
+
+<h3>Pricipal</h3>
+{% endblock %}
