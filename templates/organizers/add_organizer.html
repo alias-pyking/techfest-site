@@ -4,11 +4,11 @@
     <h2>Add {{ text }}</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} 
-        Image of Organizer : <input type="file"  name="image" ><br>
+        Image of {{text}} : <input type="file"  name="image" ><br>
         Name : <input type="text" name = 'name'><br>
         
         {% if dev %}
-        <input type="text" name='type'>
+        Type of developer <input type="text" name='type'>
         {% endif %}
         <input type="submit" value="ADD"><br>
     </form>

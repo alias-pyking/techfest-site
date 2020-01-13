@@ -21,7 +21,7 @@ from events import views as event_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('events.urls')),
-    path('organizers',include('organizers.urls')),
+    path('organizers/',include('organizers.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -9,5 +9,5 @@ urlpatterns = [
     path('<int:pk>/registered_users_for_event',registered_users_for_event,name='registered_users_for_event'),
     path('events/',events,name='events'),
     path('events/<int:id>/delete',delete_event,name='delete_event'),
-    path('add_start/',add_star,name='add_star'),
+    path('add_star/',add_star,name='add_star'),
 ]

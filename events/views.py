@@ -54,8 +54,7 @@ def add_star(request):
         if request.method == 'POST':
             image = request.FILES['image']
             name = request.POST['name']
-            description = request.POST['description']
-            new_star,created = Star.objects.get_or_create(image=image, name =name, description=description)
+            new_star,created = Star.objects.get_or_create(image=image, name =name)
             if created:
                 print('success')
                 return redirect('home')
@@ -93,7 +92,9 @@ def registered_users_for_event(request,pk):
     try:
         event = Event.objects.get(pk=pk)
         users = RegisterEventUsers.objects.filter(event = event)
-        return render(request,'events/registered_users_for_event.html',{'users':users,'event':event})
+        total = users.count()
+        context = {'users':users,'event':event,'total':total}
+        return render(request,'events/registered_users_for_event.html',context)
     except:
         # event does not exist
         raise Http404
