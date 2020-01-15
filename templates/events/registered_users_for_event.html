@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Todo : add search feild to search the users : To add go to events->views.py->registered_users_for_event at line 96 -->
 <table>
     <thead>
         <th>Name</th>
@@ -21,7 +22,7 @@
         {% endfor %}
         <tr>
             <td>Total {{total}}</td>
-        </tr>
+        </tr> 
     </tbody>
 </table>
 {% endblock %}

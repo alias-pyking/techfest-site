@@ -3,12 +3,11 @@ from django.urls import  reverse
 
 def upload_location(instance, filename):
     return '{}/{}'.format(instance, filename)
-
 class Event(models.Model):
     image = models.ImageField(upload_to = upload_location)
     name = models.CharField(max_length=150)
     description = models.TextField()
-
+    category = models.CharField(max_length = 250,null= True,blank = True)
     def __str__(self):
         return self.name
     def get_absolute_url(self):
@@ -18,7 +17,6 @@ class Star(models.Model):
     image = models.ImageField(upload_to = upload_location)
     name = models.CharField(max_length = 150)
 
-
     def __str__(self):
         return str(self.name)
 class RegisterEventUsers(models.Model):
@@ -27,6 +25,8 @@ class RegisterEventUsers(models.Model):
     college_name = models.CharField(max_length = 150)
     email = models.EmailField()
     phone_number = models.CharField(max_length = 10)
+
     def __str__(self):
         return str(self.name)
+    
     

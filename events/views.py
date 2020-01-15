@@ -20,13 +20,18 @@ def event_detail(request,pk):
     if event:
         return render(request,'events/event_detail.html',{'event':event})
 
+
+departments = {
+    'robotics':'Robotics',
+    }
 def add_event(request):
     if request.method == 'POST':
         print(request.POST)
         image = request.FILES['image']
         name = request.POST['name']
         description = request.POST['description']
-        new_event,created = Event.objects.get_or_create(image=image, name =name, description=description)
+        category = categories[request.POST['category']]
+        new_event,created = Event.objects.get_or_create(image=image, name =name, description=description,category = category)
         if created:
             print('success')
             return redirect('events')

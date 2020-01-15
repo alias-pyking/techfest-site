@@ -5,12 +5,15 @@
         {% csrf_token %} 
         
         {% if star %}
-        Image :<input type="file"  name="image" ><br>
-        Name :<input type="text" name = 'name'><br>
+        Image :<input type="file"  name="image"  required><br>
+        Name :<input type="text" name = 'name' required><br>
         {% else %}
-        Image :<input type="file"  name="image" ><br>
-        Name :<input type="text" name = 'name'><br>
-        Description :<br> <textarea  name="description"></textarea><br>
+        Image :<input type="file"  name="image"  required><br>
+        Department : <select name="department" required>
+            <option value="robotics">Robotics </option>
+        </select> 
+        Name :<input type="text" name = 'name' required><br>
+        Description :<br> <textarea  name="description" required></textarea><br>
         {% endif %}
         <input type="submit" value="Add"><br>
     </form>
