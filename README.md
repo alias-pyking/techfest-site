@@ -9,6 +9,7 @@ then after cloning this repo go the directory you cloned it in
 ``` cd techfest-site ```
 
 ``` pip install -r requirements.txt ```
+``` python manage.py migrate ```
 
 ``` python manage.py runserver ```
 
