@@ -1,29 +1,114 @@
-{% extends 'base.html' %}
+{% extends 'index/index.html' %}
+{% load static %}
+{% block uppercontent %}
+<div class="carousel"><a class="carousel-item"><img src="https://picsum.photos/1600/500?random=1" alt=""></a><a class="carousel-item"><img src="https://picsum.photos/1600/500?random=2" alt=""></a><a class="carousel-item"><img src="https://picsum.photos/1600/500?random=3" alt=""></a></div>
+      <div class="container">
+         <div class="focus-on-date">
+            <div class="focus-on-left">20-21 March, 2020</div>
+            <div class="focus-on-right"> DAVIET, Kabir Nagar<br>Jalandhar</div>
+         </div>
+         <div class="row">
+            <div class="col s12 m12 l4">
+               <div class="squarish-flip-card"><a href="#">Last Year</a><img class="responsive-img" src="https://picsum.photos/512/512?random=4" alt=""></div>
+            </div>
+            <div class="col s12 m12 l4">
+               <div class="squarish-flip-card"><a href="#">Event Line Up</a><img class="responsive-img" src="https://picsum.photos/512/512?random=5" alt=""></div>
+            </div>
+            <div class="col s12 m12 l4">
+               <div class="squarish-flip-card"><a href="#">Tickets</a><img class="responsive-img" src="https://picsum.photos/512/512?random=6" alt=""></div>
+            </div>
+         </div>
+      </div>
+      <div class="about-event scrollspy" id="aboutEvent">
+         <div class="container">
+            <h1 class="wow zoomIn"><span>The most awaited Technical Event of the Year          </span></h1>
+            <p class="wow zoomIn">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, iusto. Dolorum quisquam at molestias quae est. Doloremque eveniet laboriosam atque aliquam excepturi, facere distinctio vitae voluptate fugiat ipsa reiciendis inventore! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa esse, magnam ad quis doloremque labore, vel ipsum fugiat error nobis repellendus, facere vitae sed. Amet voluptate ipsam neque quas ut.</p>
+            <a class="wow zoomIn waves-effect" href="#">Register Now</a>
+         </div>
+      </div>
+{% endblock %}
 
-{% block content %}
-<h3>Star Night Guest</h3>
-{% if request.user.is_superuser %}
-<a href="{% url 'add_star' %}"><button>Add New Star</button></a>
-{% endif %}
-<div class="star">
-    <img src="{{ star.image.url }}" width="500px" height="500px" alt="star night guest">
-    <h4>{{ star.name }}</h4>
-</div>
-<h3><a href="{% url 'events' %}">Events</a></h3>
+{% block events %}
+<div class="event-list">
+    <div class="container">
+       <!-- <ul class="tabs custom-tabs wow zoomIn scrollspy" id="eventList">
+          <li class="tab"><a href="#day-one-events">Day One</a></li>
+          <li class="tab"><a href="#day-two-events">Day Two</a></li>
+       </ul> -->
+       <table class="responsive-table" id="day-one-events">
+          <h1>Events </h1>
+          <thead>
+             <tr>
+                <td width="20%">&nbsp;</td>
+                <td width="65%">&nbsp;</td>
+                <td width="15%">&nbsp;</td>
+             </tr>
+          </thead>
+          <tbody>
+             {% for event in events %}
+             <tr class="wow zoomIn">
+                <td><span class="date">{{ event.date|date }}</span><span class="time">{{ event.date|time}}</span></td>
+                <td>
+                  <span class="event-title">{{ event.name }}</span>
+                  <span class="event-title">{{ event.category }}</span>
+                  <span class="event-description"> 
+                  {{ event.description|truncatechars:100 }}
+                  </span></td>
+                <td><a class="btn waves-effect adavitya-orange" href="{{ event.get_absolute_url }}">Details</a></td>
+             </tr>
+            {% endfor %}
+          </tbody>
+       </table>
+       <!-- <table class="responsive-table" id="day-two-events">
+          <thead>
+             <tr>
+                <td width="20%">&nbsp;</td>
+                <td width="65%">&nbsp;</td>
+                <td width="15%">&nbsp;</td>
+             </tr>
+          </thead>
+          <tbody>
+             <tr class="wow zoomIn">
+                <td><span class="date">May 20, 2020 Wed</span><span class="time">10:00 PM - 10:30 PM</span></td>
+                <td><span class="event-title">Photography</span><span class="event-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span></td>
+                <td><a class="btn btn-block waves-effect orange" href="#event-details">Details</a></td>
+             </tr>
+             <tr class="wow zoomIn">
+                <td><span class="date">May 20, 2020 Wed</span><span class="time">10:00 PM - 10:30 PM</span></td>
+                <td><span class="event-title">Pictography</span><span class="event-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </span></td>
+                <td><a class="btn waves-effect orange" href="#event-details">Details</a></td>
+             </tr>
+          </tbody>
+       </table> -->
+    </div>
+    <div class="catalogue-link wow zoomIn"> <a class="btn adavitya-orange waves-effect waves-light">Catalogue</a></div>
+ </div>
+{% endblock %}
 
-{% for event in events %}
 
-<div class="event">
-    <img src="{{ event.image.url }}" width="400px" height="400px">
-    <a href="{{ event.get_absolute_url }}"><h4>{{event.name}}</h4></a>
-    <h4> Category {{ event.category }}</h4>
-    <a href="{% url 'register' event.id %}"> Register</a>
-    <!-- Description of the event -->
-    <p>{{event.description|truncatechars:150 }}</p>
-    <a href="{{ event.get_absolute_url }}">Read more</a>
-</div>
-
-{% endfor %}
-
-<a href="{% url 'organizers' %}">Organizers</a>
+{% block lowercontent %}
+<div class="about-event full-size-background scrollspy" id="findUs">
+    <div class="container">
+       <h1 class="wow zoomIn"><span>Find Us on any Map</span></h1>
+       <div class="row">
+          <div class="col l12"><iframe class="wow zoomIn responsive-embed" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3407.512212061699!2d75.55530901547266!3d31.344841762924002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5a9c00d46e6f%3A0x1df5c0851f0720fe!2sDAV%20Institute%20of%20Engineering%20and%20Technology!5e0!3m2!1sen!2sin!4v1579464782385!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></div>
+       </div>
+    </div>
+ </div>
+ <div class="contact-details scrollspy" id="contactDetails">
+    <div class="container">
+       <h1 class="wow zoomIn">Contact Us Anytime</h1>
+       <div class="row">
+          <div class="col l6 center"><img class="wow zoomIn responsive-img" src="{% static 'img/photo1.jpg' %}"></div>
+          <div class="col l6 wow zoomIn">
+             <p>DAV Institute of Engg and Tech<br>Kabir Nagar, Jalandhar<br>Punjab, India</p>
+             <b>Mobile Numbers</b>
+             <p>+91 9595955445<br>+91 9595955446</p>
+             <b>Emails</b>
+             <p>popopo@adavitya.com<br>popopo2@adavitya.com</p>
+          </div>
+       </div>
+    </div>
+ </div>
 {% endblock %}

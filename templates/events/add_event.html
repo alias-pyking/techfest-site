@@ -1,18 +1,21 @@
-{% extends 'base.html' %}
+{% extends 'index/index.html' %}
 {% block content %}
+<br>
+<br>
+<br>
 <div>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} 
         
         {% if star %}
-        Image :<input type="file"  name="image"  required><br>
-        Name :<input type="text" name = 'name' required><br>
+        Image :<input type="file"  name="image"  required width="400px" height="100px">
+        Name :<input type="text" name = 'name' required width="400px" height="100px">
         {% else %}
-        Image :<input type="file"  name="image"  required><br>
+        Image :<input type="file"  name="image"  required>
         Department : <select name="department" required>
             <option value="robotics">Robotics </option>
         </select> 
-        Name :<input type="text" name = 'name' required><br>
+        Name :<input type="text" name = 'name' required>
         Description :<br> <textarea  name="description" required></textarea><br>
         {% endif %}
         <input type="submit" value="Add"><br>

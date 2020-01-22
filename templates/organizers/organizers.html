@@ -1,10 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'index/index.html' %}
 
 {% block content %}
+<div class="container">
 <h1>Cordinators</h1>
-<h3>Faculty Co-ordinator</h3>
+<h3>Faculty Co-ordinators</h3>
 {% if request.user.is_authenticated and request.user.is_superuser %}
-<a href="{% url 'add_faculty' %}"><button>Add Faculty Cordinator</button></a>
+<a href="{% url 'add_faculty' %}"><button class="btn m-4">Add Faculty Cordinator</button></a>
 {% endif  %}
 {% for faculty_coordinator in faculty_coordinators %}
 <div class="event">
@@ -16,7 +17,7 @@
 {% endfor %}
 <h2>Student Co-ordinators</h2>
 {% if request.user.is_authenticated and request.user.is_superuser %}
-<a href="{% url 'add_student' %}"><button>Add Student Cordinator</button></a>
+<a href="{% url 'add_student' %}"><button class="btn">Add Student Cordinator</button></a>
 {% endif  %}
 {% for student_coordinator in student_coordinators %}
 <div class="event">
@@ -37,6 +38,6 @@
     <h4>{{dev.typ}}</h4>
     {%if request.user.is_superuser %}<a href="{% url 'delete_dev' dev.id %}"><button>Delete dev</button></a> {% endif %}
 </div>
-
+</div>
 {% endfor %}
 {% endblock %}

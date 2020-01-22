@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'index/index.html' %}
 
 {% block content %}
-<div>
+<div class="container">
     {% if request.user.is_superuser %}
-    <a href="{% url 'delete_event' event.id %}"> Delete Event</a> <br>
+    <a href="{% url 'delete_event' event.id %}" class="btn btn-danger"> Delete Event</a> <br>
     {% endif %}
-    <img src="{{event.image.url}}" width="500px" height="500px">
+    <img src="{{event.image.url}}" class="img-fluid">
     <h3>{{ event.name }}</h3>
     <p>{{ event.description }}</p>
 
