@@ -20,7 +20,7 @@ class Devs(models.Model):
 class FacultyCordinators(models.Model):
     image = models.ImageField(upload_to = upload_location)
     name = models.CharField(max_length = 150)
-
+    title = models.CharField(max_length = 150, null=True,blank = True)
     def __str__(self):
         return str(self.name)
     

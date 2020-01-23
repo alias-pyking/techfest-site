@@ -17,6 +17,9 @@
    button{
       margin:10px;
    }
+   body{
+      color: white;
+   }
    </style>
    <body>
       <!-- <div class="preloader">
@@ -36,45 +39,32 @@
             </defs>
          </svg>
       </div> -->
-      <nav class="adavitya">
-         <a class="logo"><img src="{% static 'img/original_logo.png' %}" alt=""></a><a class="sidenav-trigger" data-target="mobile" href="#"><i class="material-icons">menu</i></a>
+      <nav class="adavitya"><a class="logo"><img src="{% static 'img/original_logo_glow.png' %}" alt=""></a><a class="sidenav-trigger" data-target="mobile" href="#"><i class="material-icons">menu</i></a>
          <ul class="center hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="#aboutEvent">About</a></li>
-            <li><a href="{% url 'events' %}">Events</a></li>
-            <li><a href="{% url 'organizers' %}">Organizers</a></li>
-            <li><a href="#contactDetails">Contact</a></li>
+           <li><a href="/">Home</a></li>
+           <li><a href="#aboutEvent">About</a></li>
+           <li><a href="{% url 'events' %}">Events</a></li>
+           <li><a href="{% url 'organizers' %}">Organizers</a></li>
+           <li><a href="#contactDetails">Contact</a></li>
          </ul>
          <ul class="social hide-on-med-and-down">
-            <li>
-               <a href="http://facebook.com">
-                  <div class="icon-container"><i class="socicon-facebook"></i></div>
-               </a>
-            </li>
-            <li>
-               <a href="http://twitter.com" target="_blank">
-                  <div class="icon-container"><i class="socicon-twitter"></i></div>
-               </a>
-            </li>
-            <li>
-               <a href="http://instagram.com" target="_blank">
-                  <div class="icon-container"><i class="socicon-instagram"></i></div>
-               </a>
-            </li>
-            <li>
-               <a href="http://youtube.com" target="_blank">
-                  <div class="icon-container"><i class="socicon-youtube"></i></div>
-               </a>
-            </li>
+           <li><a href="http://facebook.com">
+               <div class="icon-container"><i class="socicon-facebook"></i></div></a></li>
+           <li><a href="http://twitter.com">
+               <div class="icon-container"><i class="socicon-twitter"></i></div></a></li>
+           <li><a href="http://instagram.com">
+               <div class="icon-container"><i class="socicon-instagram"></i></div></a></li>
+           <li><a href="http://youtube.com">
+               <div class="icon-container"><i class="socicon-youtube"></i></div></a></li>
          </ul>
-      </nav>
-      <ul class="sidenav" id="mobile">
+       </nav>
+       <ul class="sidenav" id="mobile">
          <li><a href="/">Home</a></li>
          <li><a href="#aboutEvent">About</a></li>
          <li><a href="{% url 'events' %}">Events</a></li>
-         <li><a href="{% url 'organizers' %}">Organizers</a></li>
+         <li><a href="/organizers">Organizers</a></li>
          <li><a href="#contactDetails">Contact</a></li>
-      </ul>
+       </ul>
       {% if messages %}
       {% for message in messages %}
       <div class="card-panel teal lighten-2">{{ message }}</div>
@@ -104,8 +94,11 @@
       </div>
    </body>
    <script>
-   $(document).ready(function() {
-      $('select').material_select();
-   });
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, options);
+  });
+
    </script>
 </html>

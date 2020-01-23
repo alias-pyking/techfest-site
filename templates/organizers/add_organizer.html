@@ -4,11 +4,13 @@
     <h2>Add {{ text }}</h2>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %} 
-        Image of {{text}}  <input type="file"  name="image" ><br>
-        Name  <input type="text" name = 'name'><br>
-        
+        Image of {{text}}  <input type="file"  name="image"  required><br>
+        Name  <input type="text" name = 'name' required><br>
+        {% if faculty %}
+        Title <input type="text" name="title" required>
+        {% endif %}
         {% if dev %}
-        Type of developer <input type="text" name='type'>
+        Type of developer <input type="text" name='type' required>
         {% endif %}
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
             <i class="material-icons right">send</i>

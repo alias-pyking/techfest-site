@@ -8,16 +8,18 @@
         {% if star %}
         Image <input type="file"  name="image" required>
         Name <input type="text" name = 'name' required >
+
         {% else %}
         Image <input type="file" class="input-field"  name="image"  required>
         <br>
         <br>
-        Department
-        <input type="text" required name="deparment" class="input-field">
+        Category
+        <input type="text" required name="category" class="input-field">
         <br><br>
         
         Name <input type="text" class="input-field" name = 'name' required>
         Description <br> <textarea  name="description" required></textarea><br>
+        Date   <input type="date" name="date">
         {% endif %}
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
             <i class="material-icons right">send</i>

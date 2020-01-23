@@ -1,17 +1,16 @@
 {% extends 'index/index.html' %}
 
 {% block content %}
-<div class="container">
-    {% if request.user.is_superuser %}
-    <a href="{% url 'delete_event' event.id %}" class="btn btn-danger"> Delete Event</a> <br>
-    {% endif %}
-    <img src="{{event.image.url}}" class="img-fluid">
-    <h3>{{ event.name }}</h3>
-    <p>{{ event.description }}</p>
-
-    <a href="{% url 'register' event.id %}">Register</a>
-    <br>
-    <a href="{% url 'registered_users_for_event' event.id %}">View Registered users for this event </a>
-
+<div class="about-event my-event scrollspy" id="aboutEvent">
+    <div class="container">
+      <h1 class="wow zoomIn"><span>{{ event.name }}</span>
+    </h1>
+    <span class="date"> on {{ event.date|date }}</span><span class="time"> at {{ event.date|time}}</span>
+    <h4 class="wow zoomIn"><span>{{ event.category }}</span> 
+    </h4>
+    <img class="responsive-img" src="{{ event.image.url }}">
+      <p class="wow zoomIn">{{event.description}}</p>
+    </div>
+    <a class="wow zoomIn waves-effect" href="{% url 'register' event.id %}" style="visibility: visible; animation-name: zoomIn;">Register Now</a>
 </div>
 {% endblock %}

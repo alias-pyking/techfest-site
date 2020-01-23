@@ -19,7 +19,8 @@ def add_faculty(request):
             print(request.POST)
             image = request.FILES['image']
             name = request.POST['name']
-            new_event,created = FacultyCordinators.objects.get_or_create(image=image, name =name)
+            title = request.POST['title']
+            new_event,created = FacultyCordinators.objects.get_or_create(image=image, name =name,title =title)
             if created:
                 print('success')
                 return redirect('organizers')
@@ -27,7 +28,7 @@ def add_faculty(request):
                 print('unsuccessful')
                 return redirect('home')
         else:
-            return render(request,'organizers/add_organizer.html',{'text':'Faculty Co-ordinator'})
+            return render(request,'organizers/add_organizer.html',{'text':'Faculty Co-ordinator','faculty':True})
     else :
         messages.error(request,"You Don't have permission to do this operation" )
         return redirect('organizers')

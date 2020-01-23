@@ -1,40 +1,43 @@
 {% extends 'index/index.html' %}
 {% load static %}
 {% block uppercontent %}
-<div class="carousel"><a class="carousel-item"><img src="https://picsum.photos/1600/500?random=1" alt=""></a><a class="carousel-item"><img src="https://picsum.photos/1600/500?random=2" alt=""></a><a class="carousel-item"><img src="https://picsum.photos/1600/500?random=3" alt=""></a></div>
-      <div class="container">
-         <div class="focus-on-date">
-            <div class="focus-on-left">20-21 March, 2020</div>
-            <div class="focus-on-right"> DAVIET, Kabir Nagar<br>Jalandhar</div>
-         </div>
-         <div class="row">
-            <div class="col s12 m12 l4">
-               <div class="squarish-flip-card"><a href="#">Last Year</a><img class="responsive-img" src="https://picsum.photos/512/512?random=4" alt=""></div>
-            </div>
-            <div class="col s12 m12 l4">
-               <div class="squarish-flip-card"><a href="{% url 'events' %}">Event Line Up</a><img class="responsive-img" src="https://picsum.photos/512/512?random=5" alt=""></div>
-            </div>
-            <div class="col s12 m12 l4">
-               <div class="squarish-flip-card"><a href="#">Tickets</a><img class="responsive-img" src="https://picsum.photos/512/512?random=6" alt=""></div>
-            </div>
-         </div>
-      </div>
-      <div class="about-event scrollspy" id="aboutEvent">
-         <div class="container">
-            <h1 class="wow zoomIn"><span>The most awaited Technical Event of the Year          </span></h1>
-            <p class="wow zoomIn">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, iusto. Dolorum quisquam at molestias quae est. Doloremque eveniet laboriosam atque aliquam excepturi, facere distinctio vitae voluptate fugiat ipsa reiciendis inventore! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa esse, magnam ad quis doloremque labore, vel ipsum fugiat error nobis repellendus, facere vitae sed. Amet voluptate ipsam neque quas ut.</p>
-            <a class="wow zoomIn waves-effect" href="#">Register Now</a>
-         </div>
-      </div>
+<div class="carousel hide-on-med-and-down">
+   <div class="carousel-fixed-item big-zIndex">
+     <div class="customOverlay">
+       <div class="timer" id="timer">69 days 8 hours 32 minutes</div><a href="{% url 'events' %}" class="btn waves-effect waves-light btn-large adavitya-orange ntt mr-5">Register</a><a class="btn waves-effect waves-light btn-large adavitya-orange ntt">Star Event</a>
+     </div>
+   </div><a class="carousel-item"><img src="{% static 'img/slider-edited/1.jpg' %}" alt=""></a><a class="carousel-item"><img src="{% static 'img/slider-edited/2.jpg' %}" alt=""></a><a class="carousel-item"><img src="{% static 'img/slider-edited/3.jpg' %}" alt=""></a>
+ </div>
+ <div class="container">
+   <div class="focus-on-date">
+     <div class="focus-on-left">20-21 March, 2020</div>
+     <div class="focus-on-right white-text">DAVIET, Kabir Nagar<br>Jalandhar</div>
+   </div>
+   <div class="row">
+     <div class="col s12 m6 l4">
+       <div class="squarish-flip-card"><a href="#">Gallery</a><img class="responsive-img" src="https://picsum.photos/512/512?random=4" alt=""></div>
+     </div>
+     <div class="col s12 m6 l4">
+       <div class="squarish-flip-card"><a href="{% url 'events' %}">Event Line Up</a><img class="responsive-img" src="https://picsum.photos/512/512?random=5" alt=""></div>
+     </div>
+     <div class="col s12 m6 l4">
+       <div class="squarish-flip-card"><a href="{% url 'organizers' %}">Organizers</a><img class="responsive-img" src="https://picsum.photos/512/512?random=6" alt=""></div>
+     </div>
+   </div>
+ </div>
+ <div class="about-event scrollspy" id="aboutEvent">
+   <div class="container">
+     <h1 class="wow zoomIn"><span>Star Night Guest       </span></h1> <br>
+     <img class="responsive-img" src="{{ star.image.url }}">
+     <h3 class="wow zoomIn"> <span>{{ star.name }}</span></h3>
+     <p class="wow zoomIn">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, iusto. Dolorum quisquam at molestias quae est. Doloremque eveniet laboriosam atque aliquam excepturi, facere distinctio vitae voluptate fugiat ipsa reiciendis inventore! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa esse, magnam ad quis doloremque labore, vel ipsum fugiat error nobis repellendus, facere vitae sed.</p><a class="wow zoomIn waves-effect" href="#">Register Now</a>
+   </div>
+ </div>
 {% endblock %}
 
 {% block events %}
 <div class="event-list">
     <div class="container">
-       <!-- <ul class="tabs custom-tabs wow zoomIn scrollspy" id="eventList">
-          <li class="tab"><a href="#day-one-events">Day One</a></li>
-          <li class="tab"><a href="#day-two-events">Day Two</a></li>
-       </ul> -->
        <table class="responsive-table" id="day-one-events">
           <h1>Events </h1>
           <thead>

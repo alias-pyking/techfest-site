@@ -1,43 +1,49 @@
 {% extends 'index/index.html' %}
 
+
+
 {% block content %}
-<div class="container">
-<h1>Cordinators</h1>
-<h3>Faculty Co-ordinators</h3>
-{% if request.user.is_authenticated and request.user.is_superuser %}
-<a href="{% url 'add_faculty' %}"><button class="btn m-4">Add Faculty Cordinator</button></a>
-{% endif  %}
-{% for faculty_coordinator in faculty_coordinators %}
-<div class="event">
-    <img src="{{ faculty_coordinator.image.url}}" width="400px" height="400px">
-    <h4>{{faculty_coordinator.name}}</h4>
-    {% if request.user.is_superuser %}<a href="{% url 'delete_faculty' faculty_coordinator.id %}"><button>Delete Co-ordinator</button></a> {% endif %}
-</div>
-
-{% endfor %}
-<h2>Student Co-ordinators</h2>
-{% if request.user.is_authenticated and request.user.is_superuser %}
-<a href="{% url 'add_student' %}"><button class="btn">Add Student Cordinator</button></a>
-{% endif  %}
-{% for student_coordinator in student_coordinators %}
-<div class="event">
-    <img src="{{ student_coordinator.image.url}}" width="400px" height="400px">
-    <h4>{{student_coordinator.name}}</h4>
-    {%if request.user.is_superuser %}<a href="{% url 'delete_student' student_coordinator.id %}"><button>Delete Co-ordinator</button></a> {% endif %}
-</div>
-
-{% endfor %}
-<h2>Website and App Devs </h2>
-{% if request.user.is_authenticated and request.user.is_superuser %}
-<a href="{% url 'add_dev' %}"><button>ADD DEV </button></a>
-{% endif  %}
-{% for dev in devs %}
-<div class="event">
-    <img src="{{ dev.image.url}}" width="400px" height="400px">
-    <h4>{{dev.name}}</h4>
-    <h4>{{dev.typ}}</h4>
-    {%if request.user.is_superuser %}<a href="{% url 'delete_dev' dev.id %}"><button>Delete dev</button></a> {% endif %}
-</div>
-</div>
-{% endfor %}
+<div class="container organizers-section">
+    <div class="heading">Faculty Organizers</div>
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+    <a href="{% url 'add_faculty' %}"><button class="btn m-4">Add Faculty Cordinator</button></a>
+    {% endif  %}
+    <div class="row">
+    {% for faculty_coordinator in faculty_coordinators %}
+      <div class="col s12 m12 l4">
+        <div class="squarish-organizer-card"><a>{{ faculty_coordinator.name }}
+            <div class="small">{{ faculty_coordinator.title }}</div></a><img class="responsive-img" src="{{ faculty_coordinator.image.url}}" alt=""></div>
+            {% if request.user.is_superuser %}<a href="{% url 'delete_faculty' faculty_coordinator.id %}"><button class="btn">Delete Co-ordinator</button></a> {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="heading">Student Organizers</div>
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+    <a href="{% url 'add_student' %}"><button class="btn">Add Student Cordinator</button></a>
+    {% endif  %}
+    <div class="row">
+        {% for student_coordinator in student_coordinators %}
+      <div class="col s12 m12 l4">
+        <div class="squarish-organizer-card"><a>{{ student_coordinator.name }}
+            <div class="small"></div></a><img class="responsive-img" src="{{ student_coordinator.image.url }}" alt=""></div>
+            {%if request.user.is_superuser %}<a href="{% url 'delete_student' student_coordinator.id %}"><button class="btn">Delete Co-ordinator</button></a> {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="heading">Website and App team</div>
+    {% if request.user.is_authenticated and request.user.is_superuser %}
+    <a href="{% url 'add_dev' %}"><button class="btn">ADD DEV </button></a>
+    {% endif  %}
+    <div class="row">
+        {% for dev in devs %}
+      <div class="col s12 m12 l4">
+        <div class="squarish-organizer-card"><a>{{ dev.name }}
+            <div class="small">{{ dev.typ }}</div></a><img class="responsive-img" src="{{ dev.image.url }}" alt=""></div>
+            {% if request.user.is_superuser %}<a href="{% url 'delete_dev' dev.id %}"><button class="btn">Delete Co-ordinator</button></a> {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
+
+

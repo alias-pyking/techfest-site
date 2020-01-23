@@ -31,7 +31,7 @@ def add_event(request):
         image = request.FILES['image']
         name = request.POST['name']
         description = request.POST['description']
-        category = categories[request.POST['category']]
+        category = request.POST['category']
         new_event,created = Event.objects.get_or_create(image=image, name =name, description=description,category = category)
         if created:
             print('success')
