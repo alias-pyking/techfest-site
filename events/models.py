@@ -26,6 +26,7 @@ class RegisterEventUsers(models.Model):
     college_name = models.CharField(max_length = 150)
     email = models.EmailField()
     phone_number = models.CharField(max_length = 10)
+    registration_id = models.CharField(max_length = 15,default = 'adav123test')
 
     def __str__(self):
         return str(self.name)

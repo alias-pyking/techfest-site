@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect,Http404
 from .models import Event,Star,RegisterEventUsers
 from django.contrib import  messages
-
+from .utils import id_generator
+from django.db.models import  Q
 def home(request):
     events = Event.objects.all()
     star = Star.objects.last
@@ -79,11 +80,13 @@ def register(request,pk):
         college_name = request.POST['cname']
         email = request.POST['email']
         phone_number = request.POST['pnumber']
+        registration_id = id_generator()
         try:
             new_registered_user = RegisterEventUsers.objects.create(event = event, name = name,
                                                                                     college_name = college_name,
                                                                                     email = email,
-                                                                                    phone_number=phone_number)
+                                                                                    phone_number=phone_number,
+                                                                                    registration_id = registration_id)
             new_registered_user.save()
             messages.success(request,'You have successfully registered for the event, now you will have to pay required fees physically for participation')
             return redirect('events')
@@ -94,12 +97,33 @@ def register(request,pk):
         return render(request,'events/register.html',{})
 
 def registered_users_for_event(request,pk):
+    if request.user.is_superuser:
+        try:
+            event = Event.objects.get(pk=pk)
+            users = RegisterEventUsers.objects.filter(event = event)
+            total = users.count()
+            context = {'users':users,'event':event,'total':total}
+            return render(request,'events/registered_users_for_event.html',context)
+        except:
+            # event does not exist
+            raise Http404
+    raise Http404
+
+def search_registered_users(request,pk):
     try:
-        event = Event.objects.get(pk=pk)
-        users = RegisterEventUsers.objects.filter(event = event)
-        total = users.count()
-        context = {'users':users,'event':event,'total':total}
-        return render(request,'events/registered_users_for_event.html',context)
+        query = request.GET.get('q')
     except:
-        # event does not exist
-        raise Http404
+        query = None
+    if query != '':
+        users = RegisterEventUsers.objects.filter(
+            Q(name__icontains = query)| Q(college_name__icontains=query) |
+            Q(registration_id__icontains = query)
+            )
+        event = Event.objects.get(pk=pk)
+        context = {'query': query,'users':users,'total':users.count(),'event':event}
+        template = 'events/registered_users_for_event.html'
+    else:
+        context = {'query':query,'users':False}
+        template = 'events/registered_users_for_event.html'
+    
+    return render(request,template,context)

@@ -13,6 +13,11 @@
       <script src="{% static 'js/script.js' %}"></script>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
+   <style>
+   button{
+      margin:10px;
+   }
+   </style>
    <body>
       <!-- <div class="preloader">
          <div class="cssload-dots">
@@ -36,7 +41,7 @@
          <ul class="center hide-on-med-and-down">
             <li><a href="/">Home</a></li>
             <li><a href="#aboutEvent">About</a></li>
-            <li><a href="#eventList">Events</a></li>
+            <li><a href="{% url 'events' %}">Events</a></li>
             <li><a href="{% url 'organizers' %}">Organizers</a></li>
             <li><a href="#contactDetails">Contact</a></li>
          </ul>
@@ -66,10 +71,17 @@
       <ul class="sidenav" id="mobile">
          <li><a href="/">Home</a></li>
          <li><a href="#aboutEvent">About</a></li>
-         <li><a href="#eventList">Events</a></li>
+         <li><a href="{% url 'events' %}">Events</a></li>
          <li><a href="{% url 'organizers' %}">Organizers</a></li>
          <li><a href="#contactDetails">Contact</a></li>
       </ul>
+      {% if messages %}
+      {% for message in messages %}
+      <div class="card-panel teal lighten-2">{{ message }}</div>
+            
+
+      {% endfor %}
+      {% endif %}
       {% block uppercontent %}
       {% endblock %}
       {% block events %}
@@ -91,4 +103,9 @@
          </div>
       </div>
    </body>
+   <script>
+   $(document).ready(function() {
+      $('select').material_select();
+   });
+   </script>
 </html>

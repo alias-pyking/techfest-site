@@ -1,28 +1,39 @@
-{% extends 'base.html' %}
+{% extends 'index/index.html' %}
 
 {% block content %}
-<!-- Todo : add search feild to search the users : To add go to events->views.py->registered_users_for_event at line 96 -->
-<table>
-    <thead>
-        <th>Name</th>
-        <th>College Name</th>
-        <th>Email</th>
-        <th>Phone number</th>
-        <th>Event</th>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{user.name}}</td>
-            <td>{{user.college_name}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.phone_number}}</td>
-            <td>{{event.name}}</td>
-        </tr> 
-        {% endfor %}
-        <tr>
-            <td>Total {{total}}</td>
-        </tr> 
-    </tbody>
-</table>
+<div class="container">
+   {% if request.user.is_superuser %}
+   <form action="{% url 'search_results' event.id %}" method="GET">
+        <input type="search" placeholder="Search" name="q" value="{{ query }}" required>
+    </form>
+   {% endif %}
+    {% if users %}
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>College Name</th>
+            <th>Email</th>
+            <th>Phone number</th>
+            <th>Event</th>
+            <th>Registration Id </th>
+            <th>Paid</th>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{user.name}}</td>
+                <td>{{user.college_name}}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone_number }}</td>
+                <td>{{ event.name}}</td>
+            <td> {{ user.registration_id }}</td>
+            </tr> 
+            {% endfor %}
+            <tr>
+                <td>Total {{ total }}</td>
+            </tr> 
+            </tbody>
+    </table>
+    {% endif %}
+</div>
 {% endblock %}
